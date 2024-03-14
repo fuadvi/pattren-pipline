@@ -32,9 +32,21 @@ class UserController extends Controller
         $user = User::when(
             $request->has('search'),
             function (Builder $query) use ($request){
-                $query->where("name","like","%{$request->search}%")
-                    ->orWhere("address","like","%{$request->search}%")
-                    ->orWhere("email","like","%{$request->search}%");
+
+                //cara lama
+//                $query->where("name","like","%{$request->search}%")
+//                    ->orWhere("address","like","%{$request->search}%")
+//                    ->orWhere("email","like","%{$request->search}%");
+
+                // cara baru
+                $query->whereAny(
+                    [
+                        "name",
+                        "email"
+                    ],
+                    "like",
+                    "%{$request->search}%"
+                );
             }
         )
         ->when(

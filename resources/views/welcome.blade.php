@@ -6,9 +6,6 @@
 
         <title>Laravel</title>
 
-        <form action="{{ route('users-get') }}" method="post">
-
-        </form>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
